@@ -5,16 +5,27 @@ const Index = () => {
     useEffect(() => {
         fetch(`/.netlify/functions/welcome`)
             .then(function(response) {
-                console.log('response', response);
                 if (!response.ok) return Promise.reject(response);
                 return response.json();
             })
             .then(resp => {
-                console.log('resp.data', resp);
                 setWelcome(resp);
             })
             .catch(function(error) {
-                console.log('ERROR: ', error);
+                console.log('welcome error: ', error);
+            });
+
+        fetch(`/.netlify/functions/third-party`)
+            .then(function(response) {
+                console.log('third party api response', response);
+                if (!response.ok) return Promise.reject(response);
+                return response.json();
+            })
+            .then(data => {
+                console.log('third party api data', data);
+            })
+            .catch(function(error) {
+                console.log('third party api error: ', error);
             });
     }, []);
 
