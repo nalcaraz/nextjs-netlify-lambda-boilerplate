@@ -1,0 +1,34 @@
+{
+  "name": "next-netlify-lambda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "cross-env": "^6.0.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^0.20.0",
+    "netlify-lambda": "^1.6.3",
+    "next": "^9.1.1",
+    "node-fetch": "^2.6.0",
+    "npm-run-all": "^4.1.5",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
+  },
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next",
+    "export": "npm run build && next export",
+    "start": "cross-env NODE_ENV=dev npm-run-all --parallel start:app start:server",
+    "start:app": "node server.js",
+    "start:server": "netlify-lambda serve .netlify/functions",
+    "build": "cross-env NODE_ENV=production run-p build:**",
+    "build:app": "next build",
+    "build:lambda": "netlify-lambda build .netlify/functions"
+  },
+  "author": "",
+  "license": "ISC"
+}
